@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "ilg-tf-test-config"
-    key    = "terraform.tfstate"
+    key    = "frontend/terraform.tfstate"
     region = "us-east-1"
   }
 
