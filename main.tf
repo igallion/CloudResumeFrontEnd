@@ -26,11 +26,56 @@ module "dir" {
   base_dir = "build"
 }
 
+resource "aws_acm_certificate" "cert" {
+  domain_name               = "www.ilgallion.com"
+  subject_alternative_names = ["www.ilgallion.com"]
+  validation_method         = "DNS"
+  //key_algorithm             = "RSA-2048"
+}
+
 resource "aws_route53_zone" "hostedZoneTerraform" {
   name    = "ilgallion.com"
   comment = "Hosted zone now managed by Terraform"
 }
 
+resource "aws_route53_record" "NSRecordsTerraform" {
+  allow_overwrite = true
+  name            = "ilgallion.com"
+  ttl             = 172800
+  type            = "NS"
+  zone_id         = aws_route53_zone.hostedZoneTerraform.zone_id
+
+  records = [
+    aws_route53_zone.hostedZoneTerraform.name_servers[0],
+    aws_route53_zone.hostedZoneTerraform.name_servers[1],
+    aws_route53_zone.hostedZoneTerraform.name_servers[2],
+    aws_route53_zone.hostedZoneTerraform.name_servers[3],
+  ]
+}
+
+resource "aws_route53_record" "A" {
+  zone_id = aws_route53_zone.hostedZoneTerraform.zone_id
+  name    = "ilgallion.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.TestDistribution.domain_name
+    zone_id                = aws_cloudfront_distribution.TestDistribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = aws_route53_zone.hostedZoneTerraform.zone_id
+  name    = "www.ilgallion.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.TestDistribution.domain_name
+    zone_id                = aws_cloudfront_distribution.TestDistribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
 //S3 bucket
 resource "aws_s3_bucket" "TestBucket" {
   bucket = "ilg-tf-test-bucket"
@@ -99,7 +144,7 @@ resource "aws_cloudfront_distribution" "TestDistribution" {
   enabled             = true
   comment             = "Test create from Terraform"
   default_root_object = "index.html"
-  //aliases             = [aws_s3_bucket.TestBucket.bucket]
+  aliases             = ["www.ilgallion.com", "ilgallion.com"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -129,7 +174,7 @@ resource "aws_cloudfront_distribution" "TestDistribution" {
     }
   }
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = aws_acm_certificate.cert.arn
   }
 }
 
