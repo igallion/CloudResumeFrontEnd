@@ -27,9 +27,9 @@ module "dir" {
 }
 
 resource "aws_acm_certificate" "cert" {
-  domain_name               = "www.ilgallion.com"
-  subject_alternative_names = ["www.ilgallion.com"]
-  validation_method         = "DNS"
+  domain_name = "www.ilgallion.com"
+  //subject_alternative_names = ["www.ilgallion.com"]
+  validation_method = "DNS"
   //key_algorithm             = "RSA-2048"
 }
 
