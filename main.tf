@@ -26,6 +26,11 @@ module "dir" {
   base_dir = "build"
 }
 
+resource "aws_route53_zone" "hostedZoneTerraform" {
+  name    = "ilgallion.com"
+  comment = "Hosted zone now managed by Terraform"
+}
+
 //S3 bucket
 resource "aws_s3_bucket" "TestBucket" {
   bucket = "ilg-tf-test-bucket"
