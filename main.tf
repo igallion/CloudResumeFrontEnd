@@ -33,6 +33,18 @@ resource "aws_acm_certificate" "cert" {
   //key_algorithm             = "RSA-2048"
 }
 
+resource "aws_acm_certificate" "cert2" {
+  domain_name = "www.ilgallion.com"
+  //subject_alternative_names = ["www.ilgallion.com"]
+  validation_method = "DNS"
+  //key_algorithm             = "RSA-2048"
+}
+
+resource "aws_acm_certificate_validation" "validationTF" {
+  certificate_arn         = aws_acm_certificate.cert2.arn
+  validation_record_fqdns = [for record in aws_route53_record.NSRecordsTerraform : record.fqdn]
+}
+
 resource "aws_route53_zone" "hostedZoneTerraform" {
   name    = "ilgallion.com"
   comment = "Hosted zone now managed by Terraform"
@@ -174,7 +186,7 @@ resource "aws_cloudfront_distribution" "TestDistribution" {
     }
   }
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.cert.arn
+    acm_certificate_arn = aws_acm_certificate.cert2.arn
     ssl_support_method  = "sni-only"
   }
 }
