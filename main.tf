@@ -159,7 +159,7 @@ resource "aws_cloudfront_distribution" "TestDistribution" {
   enabled             = true
   comment             = "Test create from Terraform"
   default_root_object = "index.html"
-  aliases             = ["www.ilgallion.com", "ilgallion.com"]
+  aliases             = "www.ilgallion.com"
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
