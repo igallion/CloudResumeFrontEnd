@@ -34,7 +34,7 @@ resource "aws_acm_certificate" "cert" {
 }
 
 resource "aws_acm_certificate" "cert2" {
-  domain_name               = "www.ilgallion.com"
+  domain_name               = "ilgallion.com"
   subject_alternative_names = ["*.ilgallion.com", "*.resume.ilgallion.com"]
   validation_method         = "DNS"
   lifecycle {
