@@ -34,9 +34,12 @@ resource "aws_acm_certificate" "cert" {
 }
 
 resource "aws_acm_certificate" "cert2" {
-  domain_name = "www.ilgallion.com"
-  //subject_alternative_names = ["www.ilgallion.com"]
-  validation_method = "DNS"
+  domain_name               = "www.ilgallion.com"
+  subject_alternative_names = ["*.ilgallion.com", "*.resume.ilgallion.com"]
+  validation_method         = "DNS"
+  lifecycle {
+    create_before_destroy = true
+  }
   //key_algorithm             = "RSA-2048"
 }
 
@@ -57,6 +60,8 @@ resource "aws_route53_record" "NSRecordsTerraform" {
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
     }
+    # Skips the domain if it doesn't contain a wildcard
+    if length(regexall("\\*\\..+", dvo.domain_name)) > 0
   }
 
   allow_overwrite = true
@@ -159,7 +164,7 @@ resource "aws_cloudfront_distribution" "TestDistribution" {
   enabled             = true
   comment             = "Test create from Terraform"
   default_root_object = "index.html"
-  aliases             = ["www.ilgallion.com"]
+  aliases             = ["resume.ilgallion.com"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
