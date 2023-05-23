@@ -71,10 +71,10 @@ resource "aws_route53_record" "NSRecordsTerraform" {
   type            = each.value.type
   zone_id         = aws_route53_zone.hostedZoneTerraform.zone_id
 }
-/*
+
 resource "aws_route53_record" "A" {
   zone_id = aws_route53_zone.hostedZoneTerraform.zone_id
-  name    = "ilgallion.com"
+  name    = "resume.ilgallion.com"
   type    = "A"
 
   alias {
@@ -83,7 +83,7 @@ resource "aws_route53_record" "A" {
     evaluate_target_health = false
   }
 }
-
+/*
 resource "aws_route53_record" "www" {
   zone_id = aws_route53_zone.hostedZoneTerraform.zone_id
   name    = "www.ilgallion.com"
