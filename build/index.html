@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume</title>
-    <div class= “header-image”></div>
+    <div class="header-image"></div>
   </head>
   <header>
     <h1>Isaac Gallion Resume</h1>
@@ -14,93 +14,94 @@
   </header>
   <body>
 
-    <h3>Visitors: </h3>
+    <h3>Visitors:</h3>
     <p id="Visitors"></p>
     <script src="./websiteAPI.js"></script>
-    <h3>Education</h3>
-    <p>
-        <ul>
-            <li>Kent State University</li>
-            <ul>
-                <li>
-                    Bachelor of Technical and Applied Studies
-                </li>
-                <li>
-                    Associate of Applied Business in General Technology
-                </li>
-            </ul>
-        </ul>
-    </p>
-    <h3>Certifications:</h3>
-    <p>
-        <ul>
-            <li>
-                AWS Certified Cloud Practicioner (CCP), Amazon Web Services - November 2022
-            </li>
-            <li>
-                HashiCorp Certified Vault Associate - June 2025
-            </li>
-        </ul>
-    </p>
-    <h3>Skills</h3>
-        <p>    
-            <ul>
-                <li>
-                    Scripting (Ability to automate tasks such as file transfers, backups, software installation using PowerShell, Bash, and Python.)
-                </li>
-                <li>
-                    Rundeck (Create jobs to automate tasks on Windows and Linux Servers such as file cleanup, server startup and shutdown, and other tasks. Created Rundeck jobs to simplify and automate migration of Alteryx workflows between QA and Production environments using PowerShell and the Alteryx Admin API.)
-                </li>
-                <li>
-                    Red Hat Enterprise Linux (Navigate Linux via the command line, automate tasks using bash scripts, and manage systemd services.)
-                </li>
-                <li>
-                    Amazon Web Services (Completed the Cloud Resume Challenge to deploy a serverless web application using Cloudfront, S3, API Gateway, Lambda, DynamoDB and other AWS technologies. Automated the deployment of resources using Terraform.) 
-                </li>
-                <li>
-                    Alteryx Server (Completed project to automate deployment of Alteryx workflows to increase the speed and accuracy of deployments, remediate issues with backup processes, and enforce an SDLC policy for production workflows.)
-                </li>
-            </ul>
-        </p>
-    <h3>Work Experience</h3>
-    <p>
-        <ul>
-            <li>
-                DevOps Engineer, CBC Companies
-                <ul>
-                    <li>
-                        07/2022 - present Upper Arlington, OH
-                    </li>
-                    <li>
-                        Automate tasks using PowerShell and Bash, manage jobs in Rundeck, administer Alteryx Server, monthly on call rotation for Linux systems and applications.
-                    </li>
-                </ul>
-            </li>
-            <li>
-                Systems Administrator Technician, The Commercial & Savings Bank
-                <ul>
-                    <li>
-                        05/2021 - 07/2022 Millersburg, OH
-                    </li>
-                    <li>
-                        Administer Active Directory, Group Policy, Azure Active Directory, and Intune. Automate tasks and perform administrative functions using Windows Powershell. Maintain hardware and software inventory and administer help desk in Lansweeper. Provide technical support to users who are located on site, at branch locations and working remotely. Troubleshoot Windows PCs, printers, and mobile devices.
-                    </li>
-                </ul>
-            </li>
-            <li>
-                IT Assistant, The Commercial & Savings Bank
-            </li>
-            <ul>
-                <li>
-                    12/2019-05/2021 - Millersburg, OH
-                </li>
-                <li>
-                    Provided level one technical support on site and remotely. Installed and configured Windows PCs, printers, and other IT assets.
-                </li>
-            </ul>
-        </ul>
 
-    </p>
+    <section>
+      <h3>Summary</h3>
+      <p>
+        DevOps Engineer with 3+ years of experience building secure, automated infrastructure using Rundeck, AWS,
+        Terraform, GitHub Actions, and Hashicorp Vault. Proven track record of implementing security-first DevOps
+        practices including dynamic database credential creation with Vault and automating workflow and application deployments. Adept in PowerShell, Python, and Bash scripting.
+      </p>
+    </section>
+
+    <section>
+      <h3>Skills & Technologies</h3>
+      <ul>
+        <li>PowerShell, Python, Bash</li>
+        <li>Docker, Kubernetes, Terraform</li>
+        <li>HashiCorp Vault, Git, GitHub Actions</li>
+        <li>Rundeck, Ansible</li>
+        <li>Linux (RHEL), Windows Server</li>
+        <li>REST APIs</li>
+        <li>AWS (S3, Lambda, Route 53, DynamoDB, CloudFront)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Personal Projects</h3>
+      <ul>
+        <li>
+          <strong>Cloud Resume Challenge:</strong> Built and deployed a secure, serverless website using AWS (S3, Lambda, CloudFront, Route 53) with Terraform and GitHub Actions for CI/CD automation.
+        </li>
+        <li>
+          <strong>Containerized Python FastAPI App:</strong> Developed a FastAPI-based containerized web service that retrieves credentials from HashiCorp Vault to query a SQL Server database and expose results via RESTful API. Includes Prometheus metrics and GitHub Actions CI pipeline.
+        </li>
+        <li>
+          <strong>Dynamic Database Credentials with Vault:</strong> Orchestrated a Vault-integrated secrets platform using Docker Compose and Terraform to generate ephemeral SQL Server credentials. Integrated Prometheus monitoring and a FastAPI consumer app.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Certifications</h3>
+      <ul>
+        <li>AWS Certified Cloud Practitioner</li>
+        <li>HashiCorp Certified Vault Associate</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Professional Experience</h3>
+      <ul>
+        <li>
+          <strong>DevOps Engineer</strong>, CBC Companies (Remote) — <em>2022 – Present</em>
+          <ul>
+            <li>Designed and deployed dynamic secrets architecture using Vault's database secrets engine for MSSQL and Oracle.</li>
+            <li>Automated Vault secrets engine configurations using Python and Rundeck.</li>
+            <li>Developed a PowerShell module for Alteryx API management including workflow deployment, scheduling, and maintenance.</li>
+            <li>Migrated Alteryx Server authentication from AD to SAML with 2FA.</li>
+            <li>Built Rundeck and PowerShell-based Alteryx deployment pipelines for delegated deployment.</li>
+            <li>Reduced Alteryx incidents from monthly to near-zero via reliability engineering.</li>
+            <li>Led Rundeck migration to modern OS platforms with zero downtime.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>System Administrator</strong>, Commercial Savings Bank — <em>2019 – 2022</em>
+          <ul>
+            <li>Administered identity, security, and devices using AD, Group Policy, Azure AD, Intune, Lansweeper.</li>
+            <li>Automated routine tasks with PowerShell to reduce workload and improve consistency.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Education</h3>
+      <ul>
+        <li>
+          <strong>Kent State University</strong>, Kent, OH
+          <ul>
+            <li>Bachelor of Technical and Applied Studies, Computer Technology (2017–2021)</li>
+            <li>Awards: Special Recognition Award for Information Technology (2019)</li>
+            <li>Graduated Cum Laude</li>
+            <li>Associate of Applied Business, Computer Technology (2017–2019)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
   </body>
 </html>
